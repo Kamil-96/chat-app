@@ -26,7 +26,7 @@ const sendMessage = (event) => {
     addMessage(userName, messageContentInput.value);
     messageContentInput.value = '';
   } else {
-    alert('This field can/t be empty!');
+    alert(`This field can't be empty!`);
   }
 };
 

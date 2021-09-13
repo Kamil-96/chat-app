@@ -4,5 +4,14 @@
   "main": "index.js",
   "repository": "git@github.com:Kamil-96/chat-app.git",
   "author": "Kamil Put <kamil.put@interia.pl>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
 }
