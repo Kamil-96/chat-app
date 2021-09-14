@@ -5,6 +5,7 @@ const socket = require('socket.io');
 const app = express();
 
 const messages = [];
+const users = [];
 
 app.use(express.static(path.join(__dirname, '/client')));
 
@@ -23,5 +24,19 @@ io.on('connection', (socket) => {
     console.log('Oh, I\'ve got something from ' + socket.id);
     messages.push(message);
     socket.broadcast.emit('message', message);
+  });
+
+  socket.on('join', (login) => {
+    console.log('I got login from ' + socket.id);
+    users.push(login);
+    console.log('Users: ', users);
+  });
+
+  socket.on('disconnect', () => {
+    const user = users.find(obj => obj.id === socket.id);
+    const index = users.indexOf(user);
+    users.splice(index, 1);
+    if(user) {console.log('Oh no, ' + user.name + ' has left!')};
+    console.log('Users: ', users);
   });
 });

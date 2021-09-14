@@ -18,6 +18,7 @@ const login = (event) => {
     userName = userNameInput.value;
     loginForm.classList.remove('show');
     messagesSection.classList.add('show');
+    socket.emit('join', { name: userName, id: socket.id });
   } else {
     alert('Type your login!');
   }
@@ -33,7 +34,7 @@ const sendMessage = (event) => {
   }
   else {
     addMessage(userName, messageContent);
-    socket.emit('message', { author: userName, content: messageContent })
+    socket.emit('message', { author: userName, content: messageContent });
     messageContentInput.value = '';
   }
 };
